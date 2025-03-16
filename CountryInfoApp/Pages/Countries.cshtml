@@ -1,0 +1,24 @@
+@page
+@model CountriesModel
+@inject CountryService CountryService
+
+<h2>Countries List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Population</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var country in Model.Countries)
+        {
+            <tr>
+                <td>@country.Name.Common</td>
+                <td>@country.Capital?.FirstOrDefault()</td>
+                <td>@country.Population</td>
+            </tr>
+        }
+    </tbody>
+</table>

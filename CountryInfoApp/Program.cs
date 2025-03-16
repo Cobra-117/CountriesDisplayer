@@ -1,7 +1,12 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient<CountryService>();
+
 
 var app = builder.Build();
 
@@ -13,8 +18,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseWebSockets();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseWebSockets(); 
+
 
 app.UseRouting();
 
