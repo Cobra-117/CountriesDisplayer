@@ -5,7 +5,7 @@
 
 <h3>Countries List</h3>
 
-
+<MudButton OnClick="() => HandleClick()" >test</MudButton>
 <MudButton OnClick="() => SortByName()" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary" >Sort by Name</MudButton>
 <MudButton OnClick="() => SortByPopulation()" Variant="MudBlazor.Variant.Filled" Color="Color.Secondary">Sort by Population</MudButton>
 
@@ -16,12 +16,29 @@
     </HeaderContent>
     <RowTemplate Context="country">
         <MudTd>@country.Name.Common</MudTd>
-        <MudTd>@country.Population</MudTd>
+         <MudTd>@FormatPopulation(country.Population)</MudTd>
     </RowTemplate>
 </MudTable>
 
 @code {
     private List<Country> countries = new List<Country>();
+    
+    private string FormatPopulation(long population)
+    {
+        if (population >= 1_000_000_000)
+        {
+            return $"{population / 1_000_000_000.0:N1} billion";
+        }
+        if (population >= 1_000_000)
+        {
+            return $"{population / 1_000_000.0:N1} million";
+        }
+        if (population >= 1_000)
+        {
+            return $"{population / 1_000.0:N1}K";
+        }
+        return population.ToString("N0"); // No abbreviation for smaller numbers
+    }
     
     async Task HandleClick()
     {
