@@ -1,0 +1,15 @@
+@page "/testpage"
+
+
+
+<h3>Test Page</h3>
+<p>If this works, the issue is with your Blazor page setup.</p>
+
+
+@code {
+    protected override Task OnInitializedAsync()
+    {
+        Console.WriteLine("TestPage is being initialized");
+        return base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,24 @@
+@page "/countrieblazor"
+@inject CountryService CountryService
+
+test
+
+<h3>Countries Page</h3>
+@* Radzen Components *@
+<RadzenGrid Data="@countries" TItem="Country">
+    <Columns>
+        <RadzenGridColumn TItem="Country" Property="Name.Common" Title="Name" />
+        
+        <RadzenGridColumn TItem="Country" Property="Population" Title="Population" />
+    </Columns>
+</RadzenGrid>
+
+@code {
+    private List<Country> countries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.Write("test");
+        countries = await CountryService.GetCountriesAsync(); // Assuming you have a method to get the countries
+    }
+}
