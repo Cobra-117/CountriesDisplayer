@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
+using MudBlazor.Services;
 
 
 
@@ -14,6 +15,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 builder.Services.AddRadzenComponents();
+builder.Services.AddMudServices();
 
 
 

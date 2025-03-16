@@ -1,5 +1,47 @@
 @inherits LayoutComponentBase
+@using MudBlazor
+@* Required *@
+<MudThemeProvider />
+<MudPopoverProvider />
+
+@* Needed for dialogs *@
+<MudDialogProvider />
+
+@* Needed for snackbars *@
+<MudSnackbarProvider />
 
 <div class="main-layout">
     @Body
 </div>
+
+
+
+<MudThemeProvider Theme="@MyTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Color="Color.Primary">
+        <MudText Typo="Typo.h6">Country Info</MudText>
+    </MudAppBar>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme MyTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#2196F3", // Blue
+            Secondary = "#42A5F5",
+            Tertiary = "#90CAF9",
+            AppbarBackground = "#1976D2",
+            Background = "#E3F2FD",
+            Surface = "#BBDEFB"
+        }
+    };
+}
+
+

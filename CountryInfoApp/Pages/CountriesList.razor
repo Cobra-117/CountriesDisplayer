@@ -1,24 +1,47 @@
 @page "/countrieblazor"
+@using MudBlazor
 @inject CountryService CountryService
+@layout MainLayout
 
-test
+<h3>Countries List</h3>
 
-<h3>Countries Page</h3>
-@* Radzen Components *@
-<RadzenGrid Data="@countries" TItem="Country">
-    <Columns>
-        <RadzenGridColumn TItem="Country" Property="Name.Common" Title="Name" />
-        
-        <RadzenGridColumn TItem="Country" Property="Population" Title="Population" />
-    </Columns>
-</RadzenGrid>
+
+<MudButton OnClick="() => SortByName()" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary" >Sort by Name</MudButton>
+<MudButton OnClick="() => SortByPopulation()" Variant="MudBlazor.Variant.Filled" Color="Color.Secondary">Sort by Population</MudButton>
+
+<MudTable Items="@countries" Dense="true" Hover="true" Bordered="true" Striped="true">
+    <HeaderContent>
+        <MudTh>Name</MudTh>
+        <MudTh>Population</MudTh>
+    </HeaderContent>
+    <RowTemplate Context="country">
+        <MudTd>@country.Name.Common</MudTd>
+        <MudTd>@country.Population</MudTd>
+    </RowTemplate>
+</MudTable>
 
 @code {
-    private List<Country> countries;
+    private List<Country> countries = new List<Country>();
+    
+    async Task HandleClick()
+    {
+        Console.WriteLine("test");
+    }
+    // Sort by Name
+    private void SortByName()
+    {
+        countries = countries.OrderBy(c => c.Name.Common).ToList();
+    }
+
+    // Sort by Population
+    private void SortByPopulation()
+    {
+        countries = countries.OrderByDescending(c => c.Population).ToList();
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        Console.Write("test");
-        countries = await CountryService.GetCountriesAsync(); // Assuming you have a method to get the countries
+        countries = await CountryService.GetCountriesAsync();
+        SortByPopulation();
     }
 }
