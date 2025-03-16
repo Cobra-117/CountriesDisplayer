@@ -5,9 +5,9 @@
 
 <h3>Countries List</h3>
 
-<MudButton OnClick="() => HandleClick()" >test</MudButton>
-<MudButton OnClick="() => SortByName()" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary" >Sort by Name</MudButton>
-<MudButton OnClick="() => SortByPopulation()" Variant="MudBlazor.Variant.Filled" Color="Color.Secondary">Sort by Population</MudButton>
+
+<MudButton OnClick="SortByName" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary" >Sort by Name</MudButton>
+<MudButton OnClick="SortByPopulation" Variant="MudBlazor.Variant.Filled" Color="Color.Secondary">Sort by Population</MudButton>
 
 <MudTable Items="@countries" Dense="true" Hover="true" Bordered="true" Striped="true">
     <HeaderContent>
@@ -40,17 +40,11 @@
         return population.ToString("N0"); // No abbreviation for smaller numbers
     }
     
-    async Task HandleClick()
-    {
-        Console.WriteLine("test");
-    }
-    // Sort by Name
     private void SortByName()
     {
         countries = countries.OrderBy(c => c.Name.Common).ToList();
     }
 
-    // Sort by Population
     private void SortByPopulation()
     {
         countries = countries.OrderByDescending(c => c.Population).ToList();
