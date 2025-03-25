@@ -13,10 +13,14 @@
 
 <MudTable Items="@countries" Dense="true" Hover="true" Bordered="true" Striped="true">
     <HeaderContent>
+         <MudTh>Flag</MudTh>
         <MudTh>Name</MudTh>
         <MudTh>Population</MudTh>
     </HeaderContent>
     <RowTemplate Context="country">
+        <MudTd>
+            <MudImage Src=@country.Flags.Png Fluid="true" Alt="Mony the dog" Elevation="25" Class="rounded-lg" Height="160" Width="107" />
+        </MudTd>
         <MudTd>@country.Name.Common</MudTd>
         <MudTd>@FormatPopulation(country.Population)</MudTd>
     </RowTemplate>
