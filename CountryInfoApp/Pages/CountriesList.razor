@@ -1,4 +1,4 @@
-@page "/countrieblazor"
+@page "/"
 @using MudBlazor
 @inject CountryService CountryService
 @layout MainLayout
@@ -6,8 +6,8 @@
 <h3>Countries List</h3>
 
 
-<MudButton OnClick="SortByName" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary" >Sort by Name</MudButton>
-<MudButton OnClick="SortByPopulation" Variant="MudBlazor.Variant.Filled" Color="Color.Secondary">Sort by Population</MudButton>
+<MudButton @onclick="SortByName" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary">Sort by Name</MudButton>
+<MudButton @onclick="SortByPopulation" Variant="MudBlazor.Variant.Filled" Color="Color.Secondary">Sort by Population</MudButton>
 
 <MudTable Items="@countries" Dense="true" Hover="true" Bordered="true" Striped="true">
     <HeaderContent>
@@ -40,7 +40,7 @@
         return population.ToString("N0"); // No abbreviation for smaller numbers
     }
     
-    private void SortByName()
+    private async Task SortByName()
     {
         countries = countries.OrderBy(c => c.Name.Common).ToList();
     }
