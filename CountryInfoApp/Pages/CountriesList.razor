@@ -3,7 +3,9 @@
 @inject CountryService CountryService
 @layout MainLayout
 
-<h3>Countries List</h3>
+<div class="page-background">
+<div class="table-container">
+
 
 
 <MudButton @onclick="SortByName" Variant=" MudBlazor.Variant.Filled" Color="Color.Primary">Sort by Name</MudButton>
@@ -16,13 +18,15 @@
     </HeaderContent>
     <RowTemplate Context="country">
         <MudTd>@country.Name.Common</MudTd>
-         <MudTd>@FormatPopulation(country.Population)</MudTd>
+        <MudTd>@FormatPopulation(country.Population)</MudTd>
     </RowTemplate>
 </MudTable>
+    </div>
+</div>
 
 @code {
     private List<Country> countries = new List<Country>();
-    
+
     private string FormatPopulation(long population)
     {
         if (population >= 1_000_000_000)
@@ -39,9 +43,10 @@
         }
         return population.ToString("N0"); // No abbreviation for smaller numbers
     }
-    
+
     private async Task SortByName()
     {
+        await Task.Yield();
         countries = countries.OrderBy(c => c.Name.Common).ToList();
     }
 
@@ -56,3 +61,18 @@
         SortByPopulation();
     }
 }
+
+<style>
+    .table-container {
+        width: 70%; /* Adjust the size as needed */
+        max-width: 1200px;
+        /*background: rgba(100, 255, 255, 0.8);*/ /* Adds a semi-transparent background for readability */
+        padding: 20px;
+        /*border-radius: 10px;*/
+        /*box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);*/
+        margin: 50px auto; /* Centers it horizontally and adds spacing from the top */
+        text-align: center; /* Centers text inside if needed */
+        max-height: 80vh; /* Prevents it from being too tall */
+        overflow-y: auto;
+    }
+</style>

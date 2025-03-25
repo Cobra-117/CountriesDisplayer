@@ -20,7 +20,12 @@ builder.Services.AddMudBlazorJsEvent();
 
 
 
-builder.Services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor()
+    .AddHubOptions(options =>
+    {
+        options.EnableDetailedErrors = true;
+        options.HandshakeTimeout = TimeSpan.FromSeconds(30);
+    });
 builder.Services.AddHttpClient<CountryService>();
 
 

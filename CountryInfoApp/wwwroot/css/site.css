@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.page-background {
+    height: 100vh; /* Make it cover the whole viewport */
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url('https://wallpapercat.com/w/full/9/e/d/60500-2880x1800-desktop-hd-earth-at-night-wallpaper.jpg'); /* Ensure path is correct */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px; /* Ensures content is readable */
+}

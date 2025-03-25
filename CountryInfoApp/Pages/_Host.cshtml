@@ -18,4 +18,8 @@
 
 <script src="_framework/blazor.server.js"></script>
 <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+<script>
+    window.Blazor.reconnect = () => console.log('Reconnecting...');
+    window.addEventListener('beforeunload', () => console.log('Page unload detected'));
+</script>
 
