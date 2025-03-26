@@ -1,0 +1,36 @@
+﻿@page "/cities"
+@using MudBlazor
+@inject CountryService CountryService
+@inject Services.CityService CityService
+@using static Models.City;
+@layout MainLayout
+
+
+@if (cities is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <MudTable Items="@cities" Dense="true" Hover="true" Bordered="true" Striped="true">
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            <MudTh>Country</MudTh>
+            <MudTh>Population</MudTh>
+        </HeaderContent>
+        <RowTemplate Context="city">
+            <MudTd>@city.Name</MudTd>
+            <MudTd>@city.Country</MudTd>
+            <MudTd>@city.Population.ToString("N0")</MudTd>
+        </RowTemplate>
+    </MudTable>
+}
+
+@code {
+    private List<Models.City> cities;
+
+    protected override async Task OnInitializedAsync()
+    {
+        cities = await CityService.GetTop10CitiesAsync();
+    }
+}

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 
 public class Country
@@ -10,12 +11,16 @@ public class Country
     public bool Independent { get; set; }
     public string Status { get; set; }
     public bool UnMember { get; set; }
+
+    [NotMapped]
     public Dictionary<string, Currency> Currencies { get; set; }
     public Idd Idd { get; set; }
     public List<string> Capital { get; set; }
     public List<string> AltSpellings { get; set; }
     public string Region { get; set; }
     public string Subregion { get; set; }
+
+    [NotMapped]
     public Dictionary<string, string> Languages { get; set; }
     public Translations Translations { get; set; }
     public List<double> LatLng { get; set; }
@@ -38,6 +43,7 @@ public class Name
 {
     public string Common { get; set; }
     public string Official { get; set; }
+    [NotMapped]
     public Dictionary<string, NameDetails> NativeName { get; set; }
 }
 
@@ -61,6 +67,7 @@ public class Idd
 
 public class Translations
 {
+    [NotMapped]
     public Dictionary<string, Translation> TranslatedNames { get; set; }
 }
 
@@ -72,6 +79,7 @@ public class Translation
 
 public class Demonyms
 {
+    [NotMapped]
     public Dictionary<string, string> Eng { get; set; }
 }
 
