@@ -20,6 +20,14 @@
 <MudLayout>
     <MudAppBar Color="Color.Primary">
         <MudText Typo="Typo.h6">Country Info</MudText>
+        <MudNavLink Href="/">
+            <MudIcon Icon="@Icons.Material.Filled.LocationCity" />
+            <span>Countries</span>
+        </MudNavLink>
+        <MudNavLink Href="/cities">
+            <MudIcon Icon="@Icons.Material.Filled.LocationCity" />
+            <span>Cities</span>
+        </MudNavLink>
     </MudAppBar>
     <MudMainContent>
         @Body
